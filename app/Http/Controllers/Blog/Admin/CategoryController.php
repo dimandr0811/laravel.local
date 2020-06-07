@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        dd(__METHOD__);
+        $paginator = BlogCategory::paginate(15);
+        return view('blog.admin.category.index',compact('paginator'));
+
     }
 
     /**
@@ -46,7 +49,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $item = BlogCategory::findOrFail($id);
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item','categoryList'));
     }
 
     /**
@@ -58,7 +64,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__);
+        dd(__METHOD__, $request->all(), $id);
     }
 
 
