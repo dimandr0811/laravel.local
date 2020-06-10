@@ -12,7 +12,7 @@
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="title">Заголовок</label>
-      <input name="title" value="{{ $item->title }}"
+      <input name="title" value="{{ old('title', $item->title) }}"
              id="title"
              type="text"
              class="form-control"
@@ -32,7 +32,7 @@
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="parent_id">Родитель</label>
-        <select name="patent_id"
+        <select name="parent_id"
                 id="parent_id"
                 class="form-control"
                 placeholder="Выберите категорию"

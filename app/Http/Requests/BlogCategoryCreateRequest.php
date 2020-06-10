@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogCategoryUpdateRequest extends FormRequest
+class BlogCategoryCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,6 @@ class BlogCategoryUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        //return auth()->check();
         return true;
     }
 
@@ -27,7 +26,7 @@ class BlogCategoryUpdateRequest extends FormRequest
         return [
             'title'         => 'required|min:5|max:200',
             'slug'          => 'max:255',
-            'description'   => 'max:500',
+            'description'   => 'string|max:500',
             'parent_id'     => 'integer|exists:blog_categories,id'
         ];
     }
