@@ -4,7 +4,6 @@
     @php /** @var \App\Models\BlogPost $item  */ @endphp
 
     <div class="container">
-
         @include('blog.admin.posts.includes.result_messages')
 
         @if ($item->exists)
@@ -24,20 +23,22 @@
                 </div>
             </form>
 
-                    @if($item->exists)
-                        <br>
-                        <form method="POST" action="{{ route('blog.admin.posts.destroy', $item->id) }}">
-                            @method('DELETE')
-                            @csrf
-                            <div class="row justify-content-center">
-                                <div class="col-md-8    ">
-                                    <div class="card card-block">
-                                        <div class="card-body ml-auto">
-                                            <button type="submit" class="btn btn-link">Удалить</button>
-                                        </div>
-                                    </div>
+            @if($item->exists)
+                <br>
+                <form method="POST" action="{{ route('blog.admin.posts.destroy', $item->id) }}">
+                    @method('DELETE')
+                    @csrf
+                    <div class="row justify-content-center">
+                        <div class="col-md-11">
+                            <div class="card card-block">
+                                <div class="card-body text-center ">
+                                    <button type="submit" class="btn btn-primary">Удалить</button>
                                 </div>
                             </div>
-                        </form>
-                    @endif
+                        </div>
+                    </div>
+                </form>
+            @endif
+        </div>
+
 @endsection

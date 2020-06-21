@@ -41,7 +41,7 @@
                             <textarea name="content_raw"
                                       id="content_raw"
                                       class="form-control"
-                                      rows="10">{{ old('content_raw', $item->content_raw) }}</textarea>
+                                      rows="12">{{ old('content_raw', $item->content_raw) }}</textarea>
                         </div>
                     </div>
                     <div class="tab-pane" id="adddata" role="tabpanel">

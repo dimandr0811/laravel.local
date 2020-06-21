@@ -45,3 +45,8 @@ Route::group($groupData, function (){
 //Route::resource('rest','RestTestController')->names('restTest');
 
 
+// practice
+Route::group(['namespace'=>'Practice', 'prefix'=>'/practice/images/'],function (){
+    Route::get('/upload', 'ImageController@index')->name('practice.images');
+    Route::post('upload', 'ImageController@upload')->name('practice.images.upload');
+});
