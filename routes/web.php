@@ -48,5 +48,10 @@ Route::group($groupData, function (){
 // practice
 Route::group(['namespace'=>'Practice', 'prefix'=>'/practice/images/'],function (){
     Route::get('/upload', 'ImageController@index')->name('practice.images');
-    Route::post('upload', 'ImageController@upload')->name('practice.images.upload');
+    Route::post('/upload', 'ImageController@upload')->name('practice.images.upload');
+    Route::get('/apis', 'ImageController@apis')->name('practice.apis.apis');
+});
+
+Route::group(['namespace'=>'Practice', 'prefix'=>'/practice/apis/'],function (){
+    Route::get('/', 'ApisController@index')->name('practice.apis.index');
 });

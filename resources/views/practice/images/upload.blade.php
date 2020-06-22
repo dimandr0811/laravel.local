@@ -24,12 +24,15 @@
                 <input type="file" name="image">
             </div>
 
-            <button class="bnt btn-default" type="submit">Загрузка</button>
+            <button class="bnt btn-primary" type="submit">Загрузка</button>
         </form>
 
         @isset($path)
             <img class="img-fluid" src="{{ asset('/storage/'. $path) }}" alt="">
         @endisset
+
+    </div>
+    <div class="container">
 
     </div>
 

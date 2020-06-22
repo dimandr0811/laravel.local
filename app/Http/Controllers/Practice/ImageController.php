@@ -30,4 +30,5 @@ class ImageController extends BaseController
         return view('practice.images.upload', compact('path'));
     }
 
+
 }
