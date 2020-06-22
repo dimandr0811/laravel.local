@@ -55,7 +55,7 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogCategoryCreateRequest $request)
+    public function store(BlogCategoryCreateRephquest $request)
     {
         $data = $request->input();
         if (empty($data['slug'])) {

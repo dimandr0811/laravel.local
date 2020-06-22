@@ -54,4 +54,5 @@ Route::group(['namespace'=>'Practice', 'prefix'=>'/practice/images/'],function (
 
 Route::group(['namespace'=>'Practice', 'prefix'=>'/practice/apis/'],function (){
     Route::get('/', 'ApisController@index')->name('practice.apis.index');
+    Route::post('/', 'ApisController@show')->name('practice.apis.show');
 });
