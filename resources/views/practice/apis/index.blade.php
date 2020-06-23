@@ -32,8 +32,8 @@
                                     class="form-control"
                                     placeholder="Выберите город"
                                     required>
-                                @foreach($cityAddressList as $list)
-                                    <option value="{{$list['city']}} . {{$list['address']}}">{{$list['city']}}. {{$list['address']}}</option>
+                                @foreach($cityList as $list)
+                                    <option value="{{$list}}">{{$list}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,29 +66,38 @@
             </table>
             </div>
         </div>
-
-        @if(isset($department))
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="title">Создано</label>
-                            <input type="text" value="11" class="form-control" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Изменено</label>
-                            <input type="text" value="22" class="form-control" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Удалено</label>
-                            <input type="text" value="33" class="form-control" disabled>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @if(session()->has('department'))
+                    @foreach(session() ->get('department') as  $department)
+                        @foreach($department as $dep)
 
-            @endif
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="title">Название</label>
+                                            <input type="text" value="{{$dep->name}}" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Номер телефона</label>
+                                            <input type="text" value="{{$dep->phone}}" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Email</label>
+                                            <input type="email" value="{{$dep->email}}" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Адрес</label>
+                                            <input type="text" value="{{$dep->address}}" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        @endforeach
+                    @endforeach
+                @endif
+            </div>
+    </div>
 
     </div>
 

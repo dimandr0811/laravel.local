@@ -43,21 +43,30 @@ class PracticeApisRepository
         curl_setopt($ch, CURLOPT_URL, $url);
         $response = curl_exec($ch);
         curl_close($ch);
-        $cityAddressList =  json_decode($response, true);
+        $cityList =  json_decode($response, true);
 
         //Сортировка массива по значению city
-        $cityAddressList = array_values(\Arr::sort($cityAddressList, function ($value) {
+        $cityList = array_values(\Arr::sort($cityList, function ($value) {
             return $value['city'];
         }));
 
+
         // Удаление значений где city отсутствует
-        foreach ($cityAddressList as $key => $list){
+        foreach ($cityList as $key => $list){
             if (empty($list['city'])) {
-                unset($cityAddressList[$key]);
+                unset($cityList[$key]);
             }
         }
 
-        return $cityAddressList;
+        // Удаление повторяющихся городов
+        $cities = array();
+        foreach ($cityList as $list){
+            if(!in_array($list['city'], $cities)){
+                $cities[] = $list['city'];
+            }
+        }
+
+        return $cities;
     }
 
 

@@ -21,33 +21,33 @@ class ApisController extends BaseController
     {
         $data = $this->practiceApisRepository->apiPBExchange();
 
-        $cityAddressList = $this->practiceApisRepository->apiPBComboBoxCity();
+        $cityList = $this->practiceApisRepository->apiPBComboBoxCity();
 
-        return view('practice.apis.index', compact('data', 'cityAddressList'));
+        return view('practice.apis.index', compact('data', 'cityList'));
     }
 
 
-    public function show($city = 'Днепропетровск', $address = 'Титова')
+    public function show(Request $request)
     {
-        $url = 'https://api.privatbank.ua/p24api/pboffice?';
+        $city = $request->input('city');
+
+        $url = 'https://api.privatbank.ua/p24api/pboffice?json';
         $options = [
             'city' => $city,
-            'address' => $address,
         ];
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, $url . '?json&' . http_build_query($options));
-
+        curl_setopt($ch, CURLOPT_URL, $url . '&' . http_build_query($options));
 
         $response = curl_exec($ch);
         curl_close($ch);
-        $department = json_decode($response, true);
+        $department = json_decode($response);
 
-        dd($department);
+        //dd($department);
 
         if ($department) {
-            return redirect()
-                ->route('practice.apis.index', compact('department'));
+            return redirect()->back()->with('department', [$department]);
         }
     }
 }
